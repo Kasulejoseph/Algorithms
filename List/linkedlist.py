@@ -1,10 +1,10 @@
-class Element(object):
+class Element:
     def __init__(self, value):
-        self.node = value
+        self.value = value
         self.next = None
 
 
-class LinkedList(object):
+class LinkedList:
     def __init__(self, head=None):
         self.head = head
 
@@ -49,15 +49,49 @@ class LinkedList(object):
     def delete(self, value):
         """Delete the first node with a given value."""
         current = self.head
-        if value == self.head.data:
-            self.head = current
+        if value == self.head.value:
+            self.head = current.next
             return self.head
-        while current.next:
+        while current.value != value:
             prev = current
-            if current.data == value:
+            if current.value == value:
                 current = current.next
 
                 prev.next = current.next
                 current = None
             else:
                 return None
+
+
+# Test cases
+# Set up some Elements
+e1 = Element(1)
+e2 = Element(2)
+e3 = Element(3)
+e4 = Element(4)
+
+# Start setting up a LinkedList
+ll = LinkedList(e1)
+ll.append(e2)
+ll.append(e3)
+ll.append(e4)
+
+# Test get_position
+# Should print 3
+print(ll.head.next.next.value)
+# Should also print 3
+print(ll.get_position(3).value)
+
+# Test insert
+ll.insert(e4, 3)
+# Should print 4 now
+print(ll.get_position(3).value)
+
+# Test delete
+ll.delete(1)
+# Should print 2 now
+print(ll.get_position(1).value)
+# Should print 4 now
+print(ll.get_position(2).value)
+# Should print 3 now
+print(ll.get_position(3).value)
