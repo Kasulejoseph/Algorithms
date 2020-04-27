@@ -42,3 +42,4 @@ test_list = [1, 3, 9, 11, 15, 19, 29]
 test_val2 = 9
 # print(binary_search(test_list, test_val1))
 print(binary_search(test_list, test_val2))
+
