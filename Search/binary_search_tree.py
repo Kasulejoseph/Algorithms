@@ -1,3 +1,8 @@
+"""
+worstcase O(n)
+Average case O(logn)
+Tree is sorted from left to right
+"""
 class Node(object):
     def __init__(self, value):
         self.value = value
