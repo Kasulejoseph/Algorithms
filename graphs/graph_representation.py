@@ -57,7 +57,14 @@ class Graph(object):
         Each section in the list will store a list
         of tuples that looks like this:
         (To Node, Edge Value)"""
-        return []
+        max_index = self.find_max_index()
+        adjacency_list = [None] * (max_index + 1)
+        for edge_object in self.edges:
+            if adjacency_list[edge_object.node_from.value]:
+                adjacency_list[edge_object.node_from.value].append((edge_object.node_to.value, edge_object.value))
+            else:
+                adjacency_list[edge_object.node_from.value] = [(edge_object.node_to.value, edge_object.value)]
+        return adjacency_list
 
     def get_adjacency_matrix(self):
         """Return a matrix, or 2D list.
@@ -65,7 +72,17 @@ class Graph(object):
         column numbers represent to nodes.
         Store the edge values in each spot,
         and a 0 if no edge exists."""
+
         return []
+
+    def find_max_index(self):
+        max_index = -1
+        if len(self.nodes):
+            for node in self.nodes:
+                if node.value > max_index:
+                    max_index = node.value
+
+        return max_index
 
 
 graph = Graph()
